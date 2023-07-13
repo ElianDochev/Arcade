@@ -1,0 +1,11 @@
+*.o
+*.so
+test*
+doky_conf
+*.a
+html
+latex
+*.vscode
+a.out
+lib
+arcade

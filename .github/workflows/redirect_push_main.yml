@@ -1,0 +1,27 @@
+# name: Redirect push to new branch
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   redirect-push:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout main branch
+#         uses: actions/checkout@v2
+#         with:
+#           ref: main
+
+#       - name: Sanitize commit message
+#         id: trim_commit_msg
+#         run: |
+#           echo "::set-output name=sanitized_commit_msg:: $(echo ${GITHUB_HEAD_REF#refs/heads/} | tr '[A-Z]' '[a-z]' | tr ' ' '-' | sed 's/[^0-9a-zA-Z.-]/_/g' | sed 's/^-//g' | sed 's/-*$//g')"
+
+#       - name: Create new branch with sanitized commit message name
+#         run: |
+#           git checkout -b ${{ steps.trim_commit_msg.outputs.sanitized_commit_msg }}
+#           git push --set-upstream origin ${{ steps.trim_commit_msg.outputs.sanitized_commit_msg }} -m $GITHUB_HEAD_REF
+
+

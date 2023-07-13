@@ -1,0 +1,26 @@
+name: Mirror to main repository
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  mirror_url: git@github.com:EpitechPromo2026/B-OOP-400-PAR-4-1-arcade-eliyan.dochev.git
+jobs:
+  mirror:
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout
+          uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+            exclude: |
+              .github/workflows
+        - name: push_to_mirror
+          uses: pixta-dev/repository-mirroring-action@v1
+          with:
+            target_repo_url:
+              ${{ env.mirror_url }}
+            ssh_private_key:
+              ${{ secrets.SSH_KEY }}
